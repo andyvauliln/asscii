@@ -1,0 +1,297 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  --card: 10, 12, 16;
+  --card-foreground: 255, 255, 255;
+  --popover: 10, 12, 16;
+  --popover-foreground: 255, 255, 255;
+  --primary: 255, 27, 107;
+  --primary-foreground: 0, 0, 0;
+  --secondary: 10, 12, 16;
+  --secondary-foreground: 255, 255, 255;
+  --border: 10, 12, 16;
+  --input: 10, 12, 16;
+  --ring: 255, 27, 107;
+  --radius: 0.75rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-['Inter'];
+    color: rgb(var(--foreground-rgb));
+    background: linear-gradient(
+      to bottom,
+      rgb(var(--background-start-rgb)),
+      rgb(var(--background-end-rgb))
+    );
+    background-color: rgb(10, 12, 16); /* Darker background */
+  }
+}
+
+.top-bar {
+  @apply fixed top-0 left-0 right-0 z-50;
+  background: rgba(21, 0, 13, 0.95);
+  border-bottom: 1px solid rgba(255, 27, 107, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.top-bar-stat {
+  @apply flex items-center space-x-2;
+  font-size: 14px;
+}
+
+.top-bar-label {
+  @apply text-gray-400;
+}
+
+.top-bar-value {
+  @apply text-white;
+}
+
+.top-bar-value.positive {
+  @apply text-green-400;
+}
+
+.top-bar-button {
+  @apply px-4 py-1 rounded-full text-sm font-medium transition-all duration-200;
+  background: rgba(255, 20, 147, 1);
+  color: white;
+}
+
+.top-bar-button:hover {
+  background: rgba(255, 20, 147, 0.8);
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 1rem;
+  background: linear-gradient(45deg, rgba(255, 20, 147, 0.1), rgba(0, 0, 0, 0.3));
+  padding: 1px;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1rem;
+  padding: 1px;
+  background: linear-gradient(135deg, 
+    rgb(255, 20, 147) 0%, 
+    rgba(255, 20, 147, 0.8) 30%,
+    rgba(255, 20, 147, 0.6) 60%,
+    rgba(255, 20, 147, 0.4) 100%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.gradient-border > div {
+  background: linear-gradient(45deg, rgba(10, 12, 16, 0.9), rgba(10, 12, 16, 0.95));
+  border-radius: 1rem;
+}
+
+.pink-glow {
+  box-shadow: 0 0 20px -5px rgba(255, 20, 147, 0.3);
+}
+
+.blue-glow {
+  box-shadow: 0 0 30px rgba(69, 202, 255, 0.15);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #ff1b6b, #45caff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-button {
+  background: linear-gradient(135deg, #ff1b6b, #45caff);
+  border-radius: 0.75rem;
+  color: white;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(255, 27, 107, 0.5), rgba(69, 202, 255, 0.5));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-button:hover::before {
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Scrollbar Styles */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 20, 147, 0.2);
+  border-radius: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 20, 147, 0.4);
+}
+
+/* Wallet Button Styles */
+.wallet-adapter-button {
+  font-weight: 500 !important;
+  padding: 0 1.25rem !important;
+  border-radius: 9999px !important;
+  transition: all 0.2s ease-in-out !important;
+  border: 2px solid transparent !important;
+  text-transform: none !important;
+  font-size: 0.875rem !important;
+  line-height: 1.25 !important;
+  min-height: 28px !important;
+}
+
+.wallet-adapter-button:hover {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: white !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.2), 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+}
+
+.wallet-adapter-button:not([disabled]):hover {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.wallet-adapter-button[disabled] {
+  background-color: rgba(255, 20, 147, 0.5) !important;
+  cursor: not-allowed !important;
+}
+
+/* Modal Styles */
+.wallet-adapter-modal-wrapper {
+  background-color: rgba(22, 22, 22, 0.95) !important;
+  border: 1px solid rgba(255, 20, 147, 0.2) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.wallet-adapter-modal-button-close {
+  background-color: #FF1493 !important;
+  border-radius: 9999px !important;
+  padding: 0.5rem !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.wallet-adapter-modal-button-close:hover {
+  transform: rotate(90deg) !important;
+  background-color: rgba(255, 20, 147, 0.9) !important;
+}
+
+.wallet-adapter-modal-title {
+  color: white !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.wallet-adapter-modal-list {
+  margin: 0 !important;
+  padding: 0.5rem !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-radius: 0.75rem !important;
+}
+
+.wallet-adapter-modal-list li {
+  transition: all 0.2s ease-in-out !important;
+  border-radius: 0.5rem !important;
+  margin: 0.5rem 0 !important;
+}
+
+.wallet-adapter-modal-list li:hover {
+  background-color: rgba(255, 20, 147, 0.1) !important;
+  transform: translateX(4px) !important;
+}
+
+.wallet-adapter-modal-list-more {
+  color: #FF1493 !important;
+  cursor: pointer;
+  margin: 1rem 0 0 !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease-in-out !important;
+}
+
+.wallet-adapter-modal-list-more:hover {
+  color: rgba(255, 20, 147, 0.8) !important;
+  text-decoration: underline !important;
+}
+
+.wallet-adapter-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.wallet-adapter-button-trigger {
+  background: none !important;
+}
+
+.wallet-adapter-button .wallet-adapter-button-start-icon {
+  margin-right: 0.5rem !important;
+}
+
+.wallet-adapter-button .wallet-adapter-button-end-icon {
+  margin-left: 0.5rem !important;
+  margin-right: 0 !important;
+}
+
+.wallet-adapter-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(5px) !important;
+}
