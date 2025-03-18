@@ -32,9 +32,13 @@ type Log = {
     tag: string
 }
 
+type LogResponse = {
+  logs: Log[]
+}
+
 export default function LogsPage() {
   const [selectedBot, setSelectedBot] = useState(BOTS[0])
-  const [logs, setLogs] = useState<Record<string, Log>>({})
+  const [logs, setLogs] = useState<Record<string, LogResponse>>({})
   const [loading, setLoading] = useState<Record<string, boolean>>({})
 
   // Generate last 10 days
