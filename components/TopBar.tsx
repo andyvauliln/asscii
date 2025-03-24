@@ -22,12 +22,34 @@ interface PerformanceResponse {
   error: string
 }
 
-export default function TopBar() {
+// Client-side only wallet button to fix hydration issues
+function ClientOnlyWalletButton() {
   const { connected } = useWallet();
-  const [metrics, setMetrics] = useState<PerformanceMetrics | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <button className="bg-[#FF1493] text-black h-[28px] py-0 px-4 rounded-md">Loading...</button>;
+  }
+
+  return (
+    <WalletMultiButton className="!bg-[#FF1493] !text-black !h-[28px] !py-0">
+      {!connected ? 'Connect Wallet' : null}
+    </WalletMultiButton>
+  );
+}
+
+export default function TopBar() {
+  const [metrics, setMetrics] = useState<PerformanceMetrics | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    
     const fetchPerformanceMetrics = async () => {
       try {
         const response = await fetch('/api/performance-metrics?timeframe=24h');
@@ -45,6 +67,11 @@ export default function TopBar() {
 
     fetchPerformanceMetrics();
   }, []);
+
+  // Don't render anything until after first client-side mount
+  if (!mounted) {
+    return <div className="top-bar h-12"></div>;
+  }
 
   return (
     <div className="top-bar">
@@ -106,9 +133,7 @@ export default function TopBar() {
 
           {/* Wallet */}
           <div>
-            <WalletMultiButton className="!bg-[#FF1493] !text-black !h-[28px] !py-0">
-              {!connected ? 'Connect Wallet' : null}
-            </WalletMultiButton>
+            <ClientOnlyWalletButton />
           </div>
         </div>
       </div>

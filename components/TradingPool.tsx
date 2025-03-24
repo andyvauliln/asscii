@@ -94,7 +94,7 @@ export default function TradingPool() {
     return (
       <div className="mt-8">
         <h2 className="text-2xl font-medium text-white mb-4">Trading Pool</h2>
-        <div className="bg-black/20 rounded-lg p-4 border border-[#FF1493]/40 h-[300px] flex items-center justify-center">
+        <div className="bg-black/20 rounded-lg p-4 border border-[#FF1493]/40 h-[300px] flex items-center justify-center p-2">
           <div className="text-white/60">Loading...</div>
         </div>
       </div>
@@ -102,7 +102,7 @@ export default function TradingPool() {
   }
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 p-4">
       <h2 className="text-2xl font-medium text-white mb-4">Trading Pool</h2>
       <div className="bg-black/20 rounded-lg p-4 border border-[#FF1493]/40 h-[300px]">
         <div className="grid grid-cols-[200px,1fr] gap-8 h-full">
@@ -157,7 +157,7 @@ export default function TradingPool() {
               />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-x-12 gap-y-4 h-[200px] content-center">
+          <div className="grid grid-cols-2 gap-x-12 gap-y-4 h-[250px] content-center">
             {poolData.tokens.map((token, index) => (
               <div 
                 key={token.tokenMint}
