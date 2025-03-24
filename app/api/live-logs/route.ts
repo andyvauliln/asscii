@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 const API_BOTS_URL = process.env.API_BOTS_URL || 'http://35.204.20.112:9090'
 
 // Define the tags we're interested in
-export const TAGS = {
+const TAGS = {
   buy_tx_confirmed: { name: 'buy_tx_confirmed', description: 'Buy transaction confirmed' },
   sell_tx_confirmed: { name: 'sell_tx_confirmed', description: 'Sell transaction confirmed' },
   rug_validation: { name: 'rug_validation', description: 'Rug validation' },
@@ -24,17 +24,40 @@ export async function GET(request: Request) {
     const url = `${API_BOTS_URL}/api/live-logs`
     console.log("Attempting to fetch logs from:", url)
     
+    // Get the request URL parameters if any
+    const { searchParams } = new URL(request.url)
+    const limit = searchParams.get('limit') || '20'
+    const offset = searchParams.get('offset') || '0'
+    
+    console.log(`Request parameters: limit=${limit}, offset=${offset}`)
+    
     try {
       const response = await fetch(
-        url,
+        `${url}?limit=${limit}&offset=${offset}`,
         {
           headers: {
             'Content-Type': 'application/json',
+            'User-Agent': 'Mozilla/5.0 NextJS Application',
+            'Accept': 'application/json',
+            'Origin': process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
           },
+          cache: 'no-store', // Ensure we don't get cached results
+          next: { revalidate: 0 } // For Next.js 13+ to avoid caching
         }
       )
 
       const data = await response.json()
+      console.log('Received data:', data)
+      
+      // Add detailed debugging about the response structure
+      console.log('Response structure:', { 
+        status: response.status,
+        hasData: !!data.data,
+        hasLogs: data.data?.logs ? true : false,
+        logCount: data.data?.logs?.length || 0,
+        success: data.success,
+        dataKeys: data.data ? Object.keys(data.data) : []
+      })
 
       if (!response.ok) {
         console.error('API request failed:', {
