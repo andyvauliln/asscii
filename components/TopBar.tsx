@@ -84,7 +84,7 @@ export default function TopBar() {
               <span className="top-bar-value">
                 {loading ? '...' : `${metrics?.winRate.value || '0'}%`}
               </span>
-              {!loading && metrics?.winRate.change !== 0 && (
+              {!loading && (
                 <span className={`ml-1 ${metrics?.winRate.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
                   {metrics?.winRate.change > 0 ? '+' : ''}{metrics?.winRate.change}%
                 </span>
@@ -97,7 +97,7 @@ export default function TopBar() {
               <span className="top-bar-value">
                 {loading ? '...' : metrics?.totalTrades.value || '0'}
               </span>
-              {!loading && metrics?.totalTrades.change !== 0 && (
+              {!loading && (
                 <span className={`ml-1 ${metrics?.totalTrades.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
                   {metrics?.totalTrades.change > 0 ? '+' : ''}{metrics?.totalTrades.change}%
                 </span>
@@ -110,7 +110,7 @@ export default function TopBar() {
               <span className="top-bar-value">
                 {loading ? '...' : `$${metrics?.volume.value || '0'}`}
               </span>
-              {!loading && metrics?.volume.change !== 0 && (
+              {!loading && (
                 <span className={`ml-1 ${metrics?.volume.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
                   {metrics?.volume.change > 0 ? '+' : ''}{metrics?.volume.change}%
                 </span>
@@ -123,7 +123,7 @@ export default function TopBar() {
               <span className="top-bar-value">
                 {loading ? '...' : `$${metrics?.poolSize.value || '0'}`}
               </span>
-              {!loading && metrics?.poolSize.change !== 0 && (
+              {!loading && (
                 <span className={`ml-1 ${metrics?.poolSize.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
                   {metrics?.poolSize.change > 0 ? '+' : ''}{metrics?.poolSize.change}%
                 </span>

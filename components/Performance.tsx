@@ -87,11 +87,9 @@ export default function Performance({ timeframe = '24h' }: { timeframe?: string 
             <div className="text-[rgb(255,20,147)] text-lg font-bold">
               {metrics?.winRate.value || '0'}%
             </div>
-            {metrics?.winRate.change !== 0 && (
-              <div className={`text-xs ${metrics?.winRate.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
-                {metrics?.winRate.change > 0 ? '+' : ''}{metrics?.winRate.change}%
-              </div>
-            )}
+            <div className={`text-xs ${metrics?.winRate.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {metrics?.winRate.change > 0 ? '+' : ''}{metrics?.winRate.change}%
+            </div>
           </div>
         </div>
       </div>
@@ -103,11 +101,9 @@ export default function Performance({ timeframe = '24h' }: { timeframe?: string 
             <div className="text-[rgb(255,20,147)] text-lg font-bold">
               {metrics?.totalTrades.value || '0'}
             </div>
-            {metrics?.totalTrades.change !== 0 && (
-              <div className={`text-xs ${metrics?.totalTrades.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
-                {metrics?.totalTrades.change > 0 ? '+' : ''}{metrics?.totalTrades.change}%
-              </div>
-            )}
+            <div className={`text-xs ${metrics?.totalTrades.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {metrics?.totalTrades.change > 0 ? '+' : ''}{metrics?.totalTrades.change}%
+            </div>
           </div>
         </div>
       </div>
@@ -119,11 +115,9 @@ export default function Performance({ timeframe = '24h' }: { timeframe?: string 
             <div className="text-[rgb(255,20,147)] text-lg font-bold">
               ${metrics?.volume.value || '0'}
             </div>
-            {metrics?.volume.change !== 0 && (
-              <div className={`text-xs ${metrics?.volume.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
-                {metrics?.volume.change > 0 ? '+' : ''}{metrics?.volume.change}%
-              </div>
-            )}
+            <div className={`text-xs ${metrics?.volume.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {metrics?.volume.change > 0 ? '+' : ''}{metrics?.volume.change}%
+            </div>
           </div>
         </div>
       </div>
@@ -135,11 +129,9 @@ export default function Performance({ timeframe = '24h' }: { timeframe?: string 
             <div className="text-[rgb(255,20,147)] text-lg font-bold">
               ${metrics?.poolSize.value || '0'}
             </div>
-            {metrics?.poolSize.change !== 0 && (
-              <div className={`text-xs ${metrics?.poolSize.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
-                {metrics?.poolSize.change > 0 ? '+' : ''}{metrics?.poolSize.change}%
-              </div>
-            )}
+            <div className={`text-xs ${metrics?.poolSize.change > 0 ? 'text-green-400' : 'text-red-400'}`}>
+              {metrics?.poolSize.change > 0 ? '+' : ''}{metrics?.poolSize.change}%
+            </div>
           </div>
         </div>
       </div>
